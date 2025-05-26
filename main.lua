@@ -5,17 +5,36 @@ io.stdout:setvbuf("no")
 
 debug = true
 
+red = {1, 0, 0, 1}
+black = {0, 0, 0, 1}
+white = {1, 1, 1, 1}
+blue = {0, 0, 1, 1}
+
+require "vector"
+require "hand"
+require "player"
+require "gameManager"
+
 function love.load()
   love.window.setMode(1280, 700)
   love.window.setTitle("Greek Style 3CG")
-  love.graphics.setBackgroundColor(0.4, 0.4, 0.4, 1)
+  love.graphics.setBackgroundColor(0.6, 0.6, 0.6, 1)
   love.graphics.setDefaultFilter("nearest", "nearest")
+  
+  Game = GameManager:new()
+  
 end
 
 function love.update()
-  
+  Game:update()
 end
 
 function love.draw()
+  love.graphics.setColor(white)
+  love.graphics.rectangle("fill", 200, 200, 50, 70, 6, 6)
+  -- black outline
+  love.graphics.setColor(black)
+  love.graphics.rectangle("line", 200, 200, 50, 70, 6, 6)
   
+  Game:draw()
 end
