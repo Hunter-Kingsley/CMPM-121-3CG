@@ -6,13 +6,18 @@ io.stdout:setvbuf("no")
 debug = true
 
 red = {1, 0, 0, 1}
+lightRed = {1, 0.5, 0.5, 1}
+blue = {0, 0, 1, 1}
+lightBlue = {0.5, 0.5, 1, 1}
+green = {0, 1, 0, 1}
+lightGreen = {0.5, 1, 0.5, 1}
 black = {0, 0, 0, 1}
 white = {1, 1, 1, 1}
-blue = {0, 0, 1, 1}
 
 require "vector"
 require "hand"
 require "player"
+require "location"
 require "gameManager"
 
 function love.load()
