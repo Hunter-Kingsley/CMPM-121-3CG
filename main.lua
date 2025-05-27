@@ -19,6 +19,7 @@ require "hand"
 require "player"
 require "location"
 require "card"
+require "cardData"
 require "grabber"
 require "gameManager"
 
