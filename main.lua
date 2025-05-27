@@ -18,6 +18,8 @@ require "vector"
 require "hand"
 require "player"
 require "location"
+require "card"
+require "grabber"
 require "gameManager"
 
 function love.load()
@@ -35,11 +37,6 @@ function love.update()
 end
 
 function love.draw()
-  love.graphics.setColor(white)
-  love.graphics.rectangle("fill", 200, 200, 50, 70, 6, 6)
-  -- black outline
-  love.graphics.setColor(black)
-  love.graphics.rectangle("line", 200, 200, 50, 70, 6, 6)
   
   Game:draw()
 end
