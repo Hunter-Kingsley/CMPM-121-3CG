@@ -16,8 +16,9 @@ function HandClass:new(pX, pY)
 end
 
 function HandClass:update()
-  for _, card in ipairs(self.cards) do
-    card.position = self.position
+  for index, card in ipairs(self.cards) do
+    card.position.x = (self.position.x + 15) + ((index - 1) * 50) + 5
+    card.position.y = self.position.y + 10
   end
 end
 

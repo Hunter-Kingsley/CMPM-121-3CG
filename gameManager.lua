@@ -20,9 +20,14 @@ function GameManager:new()
   }
   
   newData = CardDataClass:new(2, 2, "Goku", "The legendary super saiyan", nil)
+  newData2 = CardDataClass:new(2, 2, "Vegeta", "The legendary super saiyan", nil)
   newcard = newData:newCard(game.players[1])
+  newcard2 = newData2:newCard(game.players[1])
   
   table.insert(game.players[1].hand.cards, newcard)
+  table.insert(game.players[1].hand.cards, newcard2)
+  
+  print(#game.players[1].hand.cards)
   
   return game
 end
