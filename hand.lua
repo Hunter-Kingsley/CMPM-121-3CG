@@ -10,8 +10,15 @@ function HandClass:new(pX, pY)
   
   hand.position = Vector(pX, pY)
   hand.size = Vector(400, 90)
+  hand.cards = {}
   
   return hand
+end
+
+function HandClass:update()
+  for _, card in ipairs(self.cards) do
+    card.position = self.position
+  end
 end
 
 function HandClass:draw()

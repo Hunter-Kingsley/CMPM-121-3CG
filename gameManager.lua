@@ -19,6 +19,11 @@ function GameManager:new()
     LocationClass:new(800, 150, lightBlue, game.players)
   }
   
+  newData = CardDataClass:new(2, 2, "Goku", "The legendary super saiyan", nil)
+  newcard = newData:newCard(game.players[1])
+  
+  table.insert(game.players[1].hand.cards, newcard)
+  
   return game
 end
 
@@ -27,8 +32,8 @@ function GameManager:update()
     player:update()
   end
   
-  for _, player in ipairs(self.locations) do
-    player:update()
+  for _, location in ipairs(self.locations) do
+    location:update()
   end
 end
 
@@ -37,7 +42,9 @@ function GameManager:draw()
     player:draw()
   end
   
-  for _, player in ipairs(self.locations) do
-    player:draw()
+  for _, location in ipairs(self.locations) do
+    location:draw()
   end
+  
+  newcard:draw()
 end

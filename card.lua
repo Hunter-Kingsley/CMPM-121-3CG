@@ -11,10 +11,16 @@ CARD_STATE = {
 
 function CardClass:new(cardData, owner)
   local card = {}
-  local metadata = {__index = CardClass}
+  local metadata = {
+    __index = CardClass,
+    __tostring = function(a)
+      return a.dataClass.title or "MISSING NAME"
+    end
+    }
   setmetatable(card, metadata)
   
   card.position = Vector(10, 10)
+  card.size = Vector(50, 70)
   card.dataClass = cardData
   card.owner = owner
   card.currentLocation = nil
