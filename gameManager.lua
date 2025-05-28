@@ -19,26 +19,34 @@ function GameManager:new()
     LocationClass:new(800, 150, lightBlue, game.players)
   }
   
+  game.masterCardTable = {}
+  
   newData = CardDataClass:new(2, 2, "Goku", "The legendary super saiyan", nil)
   newData2 = CardDataClass:new(2, 2, "Vegeta", "The legendary super saiyan", nil)
   newcard = newData:newCard(game.players[1])
   newcard2 = newData2:newCard(game.players[1])
   
   table.insert(game.players[1].hand.cards, newcard)
+  table.insert(game.masterCardTable, newcard)
   table.insert(game.players[1].hand.cards, newcard2)
-  
-  print(#game.players[1].hand.cards)
+  table.insert(game.masterCardTable, newcard2)
   
   return game
 end
 
 function GameManager:update()
+  self:checkForMouseMoving()
+  
   for _, player in ipairs(self.players) do
     player:update()
   end
   
   for _, location in ipairs(self.locations) do
     location:update()
+  end
+  
+  for _, card in ipairs(self.masterCardTable) do
+    card:update()
   end
 end
 
@@ -51,5 +59,17 @@ function GameManager:draw()
     location:draw()
   end
   
-  newcard:draw()
+  for _, card in ipairs(self.masterCardTable) do
+    card:draw()
+  end
+end
+
+function GameManager:checkForMouseMoving()
+  if grabber.currentMousePos == nil then
+    return
+  end
+  
+  for _, card in ipairs(self.masterCardTable) do
+    card:checkForMouseOver(grabber)
+  end
 end

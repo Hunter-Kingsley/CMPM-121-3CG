@@ -25,11 +25,31 @@ function CardClass:new(cardData, owner)
   card.owner = owner
   card.currentLocation = nil
   card.isFaceUp = true
+  card.state = CARD_STATE.IDLE
   
   return card
 end
 
+function CardClass:update()
+  if self.isFaceUp then
+    if self.state == CARD_STATE.GRABBED then
+      local mousePos = Vector(
+      love.mouse.getX(),
+      love.mouse.getY()
+    )
+      self.position = mousePos - (self.size / 2)
+    end
+  end
+end
+
 function CardClass:draw()
+  -- drop shadow
+  if self.state ~= CARD_STATE.IDLE then
+      love.graphics.setColor(0, 0, 0, 0.8) -- color values [0, 1]
+      local offset = 4 * (self.state == CARD_STATE.GRABBED and 2 or 1)
+      love.graphics.rectangle("fill", self.position.x + offset, self.position.y + offset, self.size.x, self.size.y, 6, 6)
+    end
+  
   if self.isFaceUp then
     -- fill white
     love.graphics.setColor(white)
@@ -37,5 +57,39 @@ function CardClass:draw()
     -- black outline
     love.graphics.setColor(black)
     love.graphics.rectangle("line", self.position.x, self.position.y, self.size.x, self.size.y, 6, 6)
+  end
+end
+
+function CardClass:checkForMouseOver()
+  if self.isFaceUp and self.currentLocation == nil then
+    local MouseOver = self:isMouseOver()
+    if MouseOver and grabber.heldObject ~= nil and grabber.heldObject ~= self then
+      return
+    end
+    
+    -- if mouse is over, card is in mouse over state, else it's in the idle state
+    self.state = MouseOver and CARD_STATE.MOUSE_OVER or CARD_STATE.IDLE
+    
+    self:checkForGrabbed()
+  end
+end
+
+function CardClass:isMouseOver()
+  local mousePos = grabber.currentMousePos
+  local isMouseOverCheck = 
+  mousePos.x > self.position.x and
+  mousePos.x < self.position.x + self.size.x and
+  mousePos.y > self.position.y and
+  mousePos.y < self.position.y + self.size.y
+  return isMouseOverCheck
+end
+
+function CardClass:checkForGrabbed()
+  if self.isFaceUp then
+    if self.state == CARD_STATE.MOUSE_OVER and grabber.grabPos ~= nil then
+      self.state = CARD_STATE.GRABBED
+      grabber.heldObject = self
+      grabber.grabPos = self.position + (grabber.heldObject.size / 2)
+    end
   end
 end

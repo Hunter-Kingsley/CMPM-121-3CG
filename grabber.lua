@@ -11,6 +11,7 @@ function GrabberClass:new()
   grabber.grabPos = nil
   grabber.heldObject = nil
   grabber.lastSeenCard = nil
+  grabber.currentMousePos = nil
   
   return grabber
 end
@@ -31,9 +32,10 @@ function GrabberClass:update()
 end
 
 function GrabberClass:grab()
-  
+  self.grabPos = self.currentMousePos
 end
 
 function GrabberClass:release()
-  
+  self.heldObject = nil
+  self.grabPos = nil
 end

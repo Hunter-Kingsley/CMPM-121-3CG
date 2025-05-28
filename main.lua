@@ -29,11 +29,15 @@ function love.load()
   love.graphics.setBackgroundColor(0.6, 0.6, 0.6, 1)
   love.graphics.setDefaultFilter("nearest", "nearest")
   
+  grabber = GrabberClass:new()
+  
   Game = GameManager:new()
   
 end
 
 function love.update()
+  grabber:update()
+  
   Game:update()
 end
 
