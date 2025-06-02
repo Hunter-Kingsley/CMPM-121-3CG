@@ -45,3 +45,13 @@ function love.draw()
   
   Game:draw()
 end
+
+function isMouseOver(obj)
+  local mousePos = grabber.currentMousePos
+  local isMouseOverCheck = 
+  mousePos.x > obj.position.x and
+  mousePos.x < obj.position.x + obj.size.x and
+  mousePos.y > obj.position.y and
+  mousePos.y < obj.position.y + obj.size.y
+  return isMouseOverCheck
+end

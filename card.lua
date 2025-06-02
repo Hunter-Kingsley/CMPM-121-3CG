@@ -14,7 +14,7 @@ function CardClass:new(cardData, owner)
   local metadata = {
     __index = CardClass,
     __tostring = function(a)
-      return a.dataClass.title or "MISSING NAME"
+      return a.dataClass.title or "MISSING CARD NAME"
     end
     }
   setmetatable(card, metadata)
@@ -62,7 +62,7 @@ end
 
 function CardClass:checkForMouseOver()
   if self.isFaceUp and self.currentLocation == nil then
-    local MouseOver = self:isMouseOver()
+    local MouseOver = isMouseOver(self)
     if MouseOver and grabber.heldObject ~= nil and grabber.heldObject ~= self then
       return
     end
@@ -74,16 +74,6 @@ function CardClass:checkForMouseOver()
   end
 end
 
-function CardClass:isMouseOver()
-  local mousePos = grabber.currentMousePos
-  local isMouseOverCheck = 
-  mousePos.x > self.position.x and
-  mousePos.x < self.position.x + self.size.x and
-  mousePos.y > self.position.y and
-  mousePos.y < self.position.y + self.size.y
-  return isMouseOverCheck
-end
-
 function CardClass:checkForGrabbed()
   if self.isFaceUp then
     if self.state == CARD_STATE.MOUSE_OVER and grabber.grabPos ~= nil then
@@ -92,4 +82,25 @@ function CardClass:checkForGrabbed()
       grabber.grabPos = self.position + (grabber.heldObject.size / 2)
     end
   end
+end
+
+function CardClass:playCard(playLocation)
+  -- remove self from hand
+  if self.currentLocation == nil then
+    local selfIndex = 0
+    for index, card in ipairs(self.owner.hand.cards) do
+      if card == self then selfIndex = index end
+    end
+    table.remove(self.owner.hand.cards, selfIndex)
+  end
+  
+  -- put self in the locaiton
+  table.insert(playLocation.cards[self.owner], self)
+  self.currentLocation = playLocation
+  print("played " .. tostring(self))
+  print("current location: ")
+  print(self.currentLocation)
+  
+  -- put refrence to self in eventQueue
+  table.insert(Game.eventQueue[self.owner], self)
 end

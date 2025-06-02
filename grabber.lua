@@ -12,6 +12,7 @@ function GrabberClass:new()
   grabber.heldObject = nil
   grabber.lastSeenCard = nil
   grabber.currentMousePos = nil
+  grabber.lastSeenLocation = nil
   
   return grabber
 end
@@ -36,6 +37,14 @@ function GrabberClass:grab()
 end
 
 function GrabberClass:release()
-  self.heldObject = nil
+  if self.lastSeenLocation ~= nil and self.heldObject ~= nil then
+    local isOverLocation = isMouseOver(self.lastSeenLocation)
+    if isOverLocation then
+      self.heldObject:playCard(self.lastSeenLocation)
+    end
+    
+    self.heldObject.state = CARD_STATE.IDLE
+    self.heldObject = nil
+  end
   self.grabPos = nil
 end

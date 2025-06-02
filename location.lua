@@ -20,7 +20,17 @@ function LocationClass:new(xP, yP, color, playerTable)
 end
 
 function LocationClass:update()
-  
+  for _, player in ipairs(Game.players) do
+    for index, card in ipairs(self.cards[player]) do
+      if player.isBot then
+        card.position.x = (self.position.x) + (((index - 1) * 50) + 25)
+        card.position.y = self.position.y + 10
+      else
+        card.position.x = (self.position.x) + (((index - 1) * 50) + 25)
+        card.position.y = self.size.y + 60
+      end
+    end
+  end
 end
 
 function LocationClass:draw()
@@ -29,4 +39,11 @@ function LocationClass:draw()
   
   love.graphics.setColor(self.color)
   love.graphics.rectangle("fill", self.position.x, self.position.y, self.size.x, self.size.y)
+end
+
+function LocationClass:checkForMouseOver()
+  local mouseIsOver = isMouseOver(self)
+  if mouseIsOver then
+    grabber.lastSeenLocation = self
+  end
 end
