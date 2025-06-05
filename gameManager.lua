@@ -35,12 +35,9 @@ function GameManager:new()
   newcard3 = newData3:newCard(game.players[1])
   newcard4 = newData4:newCard(game.players[1])
   
-  --testCardData = 
-  --testCard = 
-  
-  cow = WoodenCow:new(game.players[1])
-  table.insert(game.players[1].hand.cards, cow)
-  table.insert(game.masterCardTable, cow)
+  testCard = Titan:new(game.players[1])
+  table.insert(game.players[1].hand.cards, testCard)
+  table.insert(game.masterCardTable, testCard)
   
   table.insert(game.players[1].hand.cards, newcard)
   table.insert(game.masterCardTable, newcard)

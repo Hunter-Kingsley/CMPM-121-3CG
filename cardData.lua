@@ -35,6 +35,38 @@ function WoodenCow:new(owner)
   return WoodenCow:newCard(owner)
 end
 
-function WoodenCow:onReveal()
-  print("MOOOOOOOOOOOOOOO")
+Pegasus = CardDataClass:new(
+  3,
+  5,
+  "Pegasus",
+  "They fly now!?",
+  nil
+)
+
+function Pegasus:new(owner)
+  return Pegasus:newCard(owner)
+end
+
+Minotaur = CardDataClass:new(
+  5,
+  9,
+  "Minotaur",
+  "They're a mean lookin' fella",
+  nil
+)
+
+function Minotaur:new(owner)
+  return Minotaur:newCard(owner)
+end
+
+Titan = CardDataClass:new(
+  7,
+  14,
+  "Titan",
+  "Like from than one show ",
+  nil
+)
+
+function Titan:new(owner)
+  return Titan:newCard(owner)
 end
