@@ -22,7 +22,9 @@ function CardClass:new(cardData, owner)
   card.position = Vector(10, 10)
   card.size = Vector(50, 70)
   card.dataClass = cardData
-  card.owner = owner
+  card.cost = cardData.cost
+  card.power = cardData.power
+  card.owner = owner or nil
   card.currentLocation = nil
   card.isFaceUp = true
   card.state = CARD_STATE.IDLE
@@ -53,6 +55,29 @@ function CardClass:draw()
   if self.isFaceUp then
     -- fill white
     love.graphics.setColor(white)
+    love.graphics.rectangle("fill", self.position.x, self.position.y, self.size.x, self.size.y, 6, 6)
+    
+    -- black outline
+    love.graphics.setColor(black)
+    love.graphics.rectangle("line", self.position.x, self.position.y, self.size.x, self.size.y, 6, 6)
+    
+    -- First Letter of Name of Card
+    love.graphics.print(string.sub(self.dataClass.title, 1, 2), self.position.x + 15, self.position.y + 25, 0, 1, 1)
+    
+    -- Power Number
+    love.graphics.setColor(1, 0.2, 0.2, 1)
+    love.graphics.circle("fill", self.position.x + (self.size.x / 2), self.position.y + 12, 10)
+    love.graphics.setColor(white)
+    love.graphics.print(self.power, self.position.x + (self.size.x / 2) - 3, self.position.y + 5)
+    
+    -- Cost Number
+    love.graphics.setColor(0.2, 0.2, 1, 1)
+    love.graphics.circle("fill", self.position.x + (self.size.x / 2), self.position.y + self.size.y - 12, 10)
+    love.graphics.setColor(white)
+    love.graphics.print(self.cost, self.position.x + (self.size.x / 2) - 3, self.position.y + self.size.y - 20)
+  else
+    --fill blue
+    love.graphics.setColor(blue)
     love.graphics.rectangle("fill", self.position.x, self.position.y, self.size.x, self.size.y, 6, 6)
     -- black outline
     love.graphics.setColor(black)
@@ -103,4 +128,26 @@ function CardClass:playCard(playLocation)
   
   -- put refrence to self in eventQueue
   table.insert(Game.eventQueue[self.owner], self)
+end
+
+function CardClass:flip()
+  self.isFaceUp = true
+  
+  self:onReveal()
+end
+
+function CardClass:onReveal()
+  if self.dataClass.onReveal then
+    self.dataClass:onReveal()
+  else
+    print(tostring(self) .. " does on have an onReveal")
+  end
+end
+
+function CardClass:onEndOfTurn()
+  if self.dataClass.onEndOfTurn then
+    self.dataClass:onEndOfTurn()
+  else
+    print(tostring(self) .. " does on have an onEndOfTurn")
+  end
 end

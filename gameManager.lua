@@ -35,6 +35,13 @@ function GameManager:new()
   newcard3 = newData3:newCard(game.players[1])
   newcard4 = newData4:newCard(game.players[1])
   
+  --testCardData = 
+  --testCard = 
+  
+  cow = WoodenCow:new(game.players[1])
+  table.insert(game.players[1].hand.cards, cow)
+  table.insert(game.masterCardTable, cow)
+  
   table.insert(game.players[1].hand.cards, newcard)
   table.insert(game.masterCardTable, newcard)
   table.insert(game.players[1].hand.cards, newcard2)
@@ -88,5 +95,14 @@ function GameManager:checkForMouseMoving()
   
   for _, location in ipairs(self.locations) do
     location:checkForMouseOver()
+  end
+end
+
+function GameManager:runTurn()
+  for _, player in ipairs(self.players) do
+    print(player)
+    for _, card in ipairs(self.eventQueue[player]) do
+      card:flip()
+    end
   end
 end

@@ -18,10 +18,11 @@ require "vector"
 require "hand"
 require "player"
 require "location"
-require "card"
 require "cardData"
+require "card"
 require "grabber"
 require "gameManager"
+require "startButton"
 
 function love.load()
   love.window.setMode(1280, 700)
@@ -32,6 +33,8 @@ function love.load()
   grabber = GrabberClass:new()
   
   Game = GameManager:new()
+  
+  StartButton = StartButtonClass:new(940, 625)
   
 end
 
@@ -44,6 +47,8 @@ end
 function love.draw()
   
   Game:draw()
+  
+  StartButton:draw()
 end
 
 function isMouseOver(obj)
@@ -54,4 +59,10 @@ function isMouseOver(obj)
   mousePos.y > obj.position.y and
   mousePos.y < obj.position.y + obj.size.y
   return isMouseOverCheck
+end
+
+function love.mousereleased(mx, my, mStartButton)
+  if mStartButton == 1 and isMouseOver(StartButton) then
+    StartButton:StartTurn()
+  end
 end
