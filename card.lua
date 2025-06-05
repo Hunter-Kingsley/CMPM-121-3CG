@@ -68,7 +68,11 @@ function CardClass:draw()
     love.graphics.setColor(1, 0.2, 0.2, 1)
     love.graphics.circle("fill", self.position.x + (self.size.x / 2), self.position.y + 12, 10)
     love.graphics.setColor(white)
-    love.graphics.print(self.power, self.position.x + (self.size.x / 2) - 3, self.position.y + 5)
+    if self.power < 10 then
+      love.graphics.print(self.power, self.position.x + (self.size.x / 2) - 3, self.position.y + 5)
+    else
+      love.graphics.print(self.power, self.position.x + (self.size.x / 2) - 8, self.position.y + 5)
+    end
     
     -- Cost Number
     love.graphics.setColor(0.2, 0.2, 1, 1)
@@ -140,7 +144,7 @@ function CardClass:onReveal()
   if self.dataClass.onReveal then
     self.dataClass:onReveal()
   else
-    print(tostring(self) .. " does on have an onReveal")
+    print(tostring(self) .. " does not have an onReveal")
   end
 end
 
@@ -148,6 +152,6 @@ function CardClass:onEndOfTurn()
   if self.dataClass.onEndOfTurn then
     self.dataClass:onEndOfTurn()
   else
-    print(tostring(self) .. " does on have an onEndOfTurn")
+    print(tostring(self) .. " does not have an onEndOfTurn")
   end
 end

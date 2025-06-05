@@ -16,15 +16,24 @@ white = {1, 1, 1, 1}
 
 require "vector"
 require "hand"
-require "player"
 require "location"
 require "cardData"
 require "card"
+require "deck"
+require "player"
 require "grabber"
 require "gameManager"
 require "startButton"
 
+cardRefrences = {
+  WoodenCow,
+  Pegasus,
+  Minotaur,
+  Titan
+}
+
 function love.load()
+  math.randomseed(os.time())
   love.window.setMode(1280, 700)
   love.window.setTitle("Greek Style 3CG")
   love.graphics.setBackgroundColor(0.6, 0.6, 0.6, 1)
@@ -33,6 +42,8 @@ function love.load()
   grabber = GrabberClass:new()
   
   Game = GameManager:new()
+  
+  Game:load()
   
   StartButton = StartButtonClass:new(940, 625)
   

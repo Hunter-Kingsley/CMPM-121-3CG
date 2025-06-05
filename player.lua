@@ -21,7 +21,14 @@ function PlayerClass:new(isBot)
   end
   player.hand = HandClass:new(handPos.x, handPos.y)
   
+  player.deck = DeckClass:new(player)
+  
   return player
+end
+
+function PlayerClass:load()
+  self.deck:shuffle()
+  self.deck:drawCards(3)
 end
 
 function PlayerClass:update()
