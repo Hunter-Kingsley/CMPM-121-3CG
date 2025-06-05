@@ -35,7 +35,7 @@ cardRefrences = {
 function love.load()
   math.randomseed(os.time())
   love.window.setMode(1280, 700)
-  love.window.setTitle("Greek Style 3CG")
+  love.window.setTitle("Rivals of Olympus")
   love.graphics.setBackgroundColor(0.6, 0.6, 0.6, 1)
   love.graphics.setDefaultFilter("nearest", "nearest")
   
