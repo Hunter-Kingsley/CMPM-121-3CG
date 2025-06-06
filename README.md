@@ -4,7 +4,8 @@
 - Flyweight pattern used to compartmentalize card values and reduce clutter
 - Event Queue used to stagger card reveals and actions so the entire turn doesn't happen in a single frame
 - Subclass Sandbox used to streamline card effect implementation
-- State used to track whether the card can or cannot be grabbed
+- State Pattern used to track whether the card can or cannot be grabbed
+- Command Pattern used to not duplicate code for the AI players
 - TODO: Observer used to display the current hovered card's title and description
 
 ## People who helped
