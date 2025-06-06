@@ -90,5 +90,6 @@ function GameManager:runTurn()
     for _, card in ipairs(self.eventQueue[player]) do
       card:flip()
     end
+    self.eventQueue[player] = {}
   end
 end

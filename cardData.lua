@@ -118,3 +118,63 @@ function Cyclops:onReveal(card)
     axedCard:discard()
   end
 end
+
+Artemis = CardDataClass:new(
+  4,
+  5,
+  "Artemis",
+  "When Revealed: Gain +5 power if there is exactly one enemy card here.",
+  nil
+)
+
+function Artemis:new(owner)
+  return Artemis:newCard(owner)
+end
+
+function Artemis:onReveal(card)
+  local enemiesList = card:getEnemyCardsHere()
+  
+  if #enemiesList == 1 then
+    card:changePower(5)
+  end
+end
+
+Hades = CardDataClass:new(
+  6,
+  8,
+  "Hades",
+  "When Revealed: Gain +2 power for each card in your discard pile.",
+  nil
+)
+
+function Hades:new(owner)
+  return Hades:newCard(owner)
+end
+
+function Hades:onReveal(card)
+  for _, otherCard in ipairs(card.owner.discard.cards) do
+    card:changePower(2)
+  end
+end
+
+Dionysus = CardDataClass:new(
+  6,
+  8,
+  "Dionysus",
+  "When Revealed: Gain +2 power for each of your other cards here.",
+  nil
+)
+
+function Dionysus:new(owner)
+  return Dionysus:newCard(owner)
+end
+
+function Dionysus:onReveal(card)
+  local ownCardsHere = card:getOwnCardsHere()
+  
+  for _, otherCard in ipairs(ownCardsHere) do
+    if otherCard ~= card then
+      card:changePower(2)
+    end
+  end
+end

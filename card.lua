@@ -62,7 +62,7 @@ function CardClass:draw()
     love.graphics.rectangle("line", self.position.x, self.position.y, self.size.x, self.size.y, 6, 6)
     
     -- First Letter of Name of Card
-    love.graphics.print(string.sub(self.dataClass.title, 1, 2), self.position.x + 15, self.position.y + 25, 0, 1, 1)
+    love.graphics.print(string.sub(self.dataClass.title, 1, 3), self.position.x + 15, self.position.y + 25, 0, 1, 1)
     
     -- Power Number
     love.graphics.setColor(1, 0.2, 0.2, 1)
