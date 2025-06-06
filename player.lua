@@ -22,6 +22,7 @@ function PlayerClass:new(isBot)
   player.hand = HandClass:new(handPos.x, handPos.y)
   
   player.deck = DeckClass:new(player)
+  player.discard = DiscardClass:new(player)
   
   return player
 end
@@ -33,8 +34,11 @@ end
 
 function PlayerClass:update()
   self.hand:update()
+  self.deck:update()
+  self.discard:update()
 end
 
 function PlayerClass:draw()
   self.hand:draw()
+  self.discard:draw()
 end
