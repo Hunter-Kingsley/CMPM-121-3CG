@@ -172,6 +172,10 @@ function CardClass:getOwnCardsHere()
   return cardList
 end
 
+function CardClass:discard(cardToDiscard)
+  
+end
+
 function CardClass:onReveal()
   if self.dataClass.onReveal then
     self.dataClass:onReveal(self)
