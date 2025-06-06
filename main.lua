@@ -29,7 +29,8 @@ cardRefrences = {
   WoodenCow,
   Pegasus,
   Minotaur,
-  Titan
+  Titan,
+  Ares
 }
 
 function love.load()

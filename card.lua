@@ -127,8 +127,8 @@ function CardClass:playCard(playLocation)
   table.insert(playLocation.cards[self.owner], self)
   self.currentLocation = playLocation
   print("played " .. tostring(self))
-  print("current location: ")
-  print(self.currentLocation)
+  print("location cards len")
+  print(#self.currentLocation.cards)
   
   -- put refrence to self in eventQueue
   table.insert(Game.eventQueue[self.owner], self)
@@ -140,9 +140,41 @@ function CardClass:flip()
   self:onReveal()
 end
 
+function CardClass:changePower(value)
+  self.power = self.power + value
+end
+
+function CardClass:setPower(value)
+  self.power = value
+end
+
+function CardClass:getEnemyCardsHere()
+  local cardList = {}
+  for _, player in ipairs(Game.players) do
+    if player ~= self.owner then
+      for _, card in ipairs(self.currentLocation.cards[player]) do
+        table.insert(cardList, card)
+      end
+    end
+  end
+  return cardList
+end
+
+function CardClass:getOwnCardsHere()
+  local cardList = {}
+  for _, player in ipairs(Game.players) do
+    if player == self.owner then
+      for _, card in ipairs(self.currentLocation.cards[player]) do
+        table.insert(cardList, card)
+      end
+    end
+  end
+  return cardList
+end
+
 function CardClass:onReveal()
   if self.dataClass.onReveal then
-    self.dataClass:onReveal()
+    self.dataClass:onReveal(self)
   else
     print(tostring(self) .. " does not have an onReveal")
   end
@@ -150,7 +182,7 @@ end
 
 function CardClass:onEndOfTurn()
   if self.dataClass.onEndOfTurn then
-    self.dataClass:onEndOfTurn()
+    self.dataClass:onEndOfTurn(self)
   else
     print(tostring(self) .. " does not have an onEndOfTurn")
   end

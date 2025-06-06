@@ -70,3 +70,25 @@ Titan = CardDataClass:new(
 function Titan:new(owner)
   return Titan:newCard(owner)
 end
+
+Ares = CardDataClass:new(
+  5,
+  6,
+  "Ares",
+  "When Revealed: Gain +2 power for each enemy card here.",
+  nil
+)
+
+function Ares:new(owner)
+  return Ares:newCard(owner)
+end
+
+function Ares:onReveal(card)
+  local cardsHere = card:getEnemyCardsHere()
+  print(#cardsHere)
+  for i, otherCard in ipairs(cardsHere) do
+    if otherCard.owner ~= card.owner then
+      card:changePower(2)
+    end
+  end
+end
