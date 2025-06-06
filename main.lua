@@ -31,7 +31,8 @@ cardRefrences = {
   Pegasus,
   Minotaur,
   Titan,
-  Ares
+  Ares,
+  Cyclops
 }
 
 function love.load()

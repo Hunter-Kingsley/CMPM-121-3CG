@@ -18,6 +18,7 @@ function DiscardClass:update()
   for index, card in ipairs(self.cards) do
     card.position.x = self.position.x
     card.position.y = self.position.y
+    card.isFaceUp = false
   end
 end
 

@@ -92,3 +92,29 @@ function Ares:onReveal(card)
     end
   end
 end
+
+Cyclops = CardDataClass:new(
+  3,
+  4,
+  "Cyclops",
+  "When Revealed: Discard your other cards here, gain +2 power for each discarded.",
+  nil
+)
+
+function Cyclops:new(owner)
+  return Cyclops:newCard(owner)
+end
+
+function Cyclops:onReveal(card)
+  local cardsToDiscard = {}
+  for index, otherCard in ipairs(card.currentLocation.cards[card.owner]) do
+    if card ~= otherCard then
+      card:changePower(2)
+      table.insert(cardsToDiscard, otherCard)
+    end
+  end
+  
+  for _, axedCard in ipairs(cardsToDiscard) do
+    axedCard:discard()
+  end
+end

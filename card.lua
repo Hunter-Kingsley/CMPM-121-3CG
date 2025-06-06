@@ -172,13 +172,35 @@ function CardClass:getOwnCardsHere()
   return cardList
 end
 
-function CardClass:discard(cardToDiscard)
+function CardClass:discard()
+  if self.currentLocation ~= nil then
+    for index, card in ipairs(self.currentLocation.cards[self.owner]) do
+      if card == self then
+        table.remove(self.currentLocation.cards[self.owner], index)
+        self.currentLocation = nil
+      end
+    end
+  end
   
+  for index, card in ipairs(self.owner.hand.cards) do
+    if card == self then
+      table.remove(self.owner.hand.cards, index)
+    end
+  end
+  
+  for index, card in ipairs(Game.eventQueue[self.owner]) do
+    if card == self then
+      table.remove(Game.eventQueue[self.owner], index)
+    end
+  end
+  
+  table.insert(self.owner.discard.cards, self)
 end
 
 function CardClass:onReveal()
   if self.dataClass.onReveal then
     self.dataClass:onReveal(self)
+    print(tostring(self) .. " did onReveal!")
   else
     print(tostring(self) .. " does not have an onReveal")
   end
