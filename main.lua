@@ -38,7 +38,12 @@ cardRefrences = {
 --  Dionysus,
 --  Hermes,
 --  ShipOfTheseus,
-  Midas
+--  Midas,
+--  Persephone,
+--  Pandora,
+--  Icarus,
+--  Nyx,
+  Helios
 }
 
 function love.load()

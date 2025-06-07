@@ -25,6 +25,7 @@ function GameManager:new()
   end
   
   game.masterCardTable = {}
+  game.cardsToDiscard = {}
   
 --  testCard = cardRefrences[math.random(1, #cardRefrences)]:new(game.players[1])
 --  table.insert(game.players[1].hand.cards, testCard)
@@ -87,9 +88,32 @@ function GameManager:runTurn()
   for _, player in ipairs(self.players) do
     print("player:")
     print(player)
+    local cardsToRemove = {}
+    
     for _, card in ipairs(self.eventQueue[player]) do
       card:flip()
+      if not card.dataClass.onEndOfTurn then
+        table.insert(cardsToRemove, card)
+      end
     end
-    self.eventQueue[player] = {}
+    
+    for _, card in ipairs(self.eventQueue[player]) do
+      card:onEndOfTurn()
+    end
+    
+    for _, card in ipairs(cardsToRemove) do
+      for index, cardRef in ipairs(self.eventQueue[player]) do
+        if card == cardRef then
+          table.remove(self.eventQueue[player], index)
+        end
+      end
+    end
+    
+    for _, card in ipairs(self.cardsToDiscard) do
+      card:discard()
+    end
+    self.cardsToDiscard = {}
   end
+  
+  
 end

@@ -115,7 +115,7 @@ function Cyclops:onReveal(card)
   end
   
   for _, axedCard in ipairs(cardsToDiscard) do
-    axedCard:discard()
+    axedCard:queueDiscard()
   end
 end
 
@@ -247,4 +247,110 @@ function Midas:onReveal(card)
   for _, otherCard in ipairs(myCards) do
     otherCard:setPower(3)
   end
+end
+
+Persephone = CardDataClass:new(
+  3,
+  5,
+  "Persephone",
+  "When Revealed: Discard the lowest power card in your hand.",
+  nil
+)
+
+function Persephone:new(owner)
+  return Persephone:newCard(owner)
+end
+
+function Persephone:onReveal(card)
+  if #card.owner.hand.cards < 1 then
+    return
+  end
+  
+  local chosenCard = card.owner.hand.cards[#card.owner.hand.cards]
+  for _, otherCard in ipairs(card.owner.hand.cards) do
+    if otherCard.power < chosenCard.power then
+      chosenCard = otherCard
+    end
+  end
+  
+  chosenCard:queueDiscard()
+end
+
+Pandora = CardDataClass:new(
+  8,
+  15,
+  "Pandora",
+  "When Revealed: If no ally cards are here, lower this card's power by 5.",
+  nil
+)
+
+function Pandora:new(owner)
+  return Pandora:newCard(owner)
+end
+
+function Pandora:onReveal(card)
+  if #card.currentLocation.cards[card.owner] == 1 and card.currentLocation.cards[card.owner][1] == card then
+    card:changePower(-5)
+  end
+end
+
+Icarus = CardDataClass:new(
+  2,
+  3,
+  "Icarus",
+  "End of Turn: Gains +1 power, but is discarded when its power is greater than 7.",
+  nil
+)
+
+function Icarus:new(owner)
+  return Icarus:newCard(owner)
+end
+
+function Icarus:onEndOfTurn(card)
+  card:changePower(1)
+  
+  print("my power: " .. tostring(card.power))
+  
+  if card.power > 7 then
+    card:queueDiscard()
+  end
+end
+
+Nyx = CardDataClass:new(
+  5,
+  3,
+  "Nyx",
+  "When Revealed: Discards your other cards here, add their power to this card.",
+  nil
+)
+
+function Nyx:new(owner)
+  return Nyx:newCard(owner)
+end
+
+function Nyx:onReveal(card)
+  local myCardsHere = card:getOwnCardsHere()
+  
+  for _, otherCard in ipairs(myCardsHere) do
+    if otherCard ~= card then
+      card:changePower(otherCard.power)
+      otherCard:queueDiscard()
+    end
+  end
+end
+
+Helios = CardDataClass:new(
+  6,
+  12,
+  "Helios",
+  "When Revealed: Discards your other cards here, add their power to this card.",
+  nil
+)
+
+function Helios:new(owner)
+  return Helios:newCard(owner)
+end
+
+function Helios:onEndOfTurn(card)
+  card:queueDiscard()
 end

@@ -22,8 +22,8 @@ function CardClass:new(cardData, owner)
   card.position = Vector(10, 10)
   card.size = Vector(50, 70)
   card.dataClass = cardData
-  card.cost = cardData.cost
-  card.power = cardData.power
+  card.cost = card.dataClass.cost
+  card.power = card.dataClass.power
   card.owner = owner or nil
   card.currentLocation = nil
   card.isFaceUp = true
@@ -170,6 +170,10 @@ function CardClass:getOwnCardsHere()
     end
   end
   return cardList
+end
+
+function CardClass:queueDiscard()
+  table.insert(Game.cardsToDiscard, self)
 end
 
 function CardClass:discard()
