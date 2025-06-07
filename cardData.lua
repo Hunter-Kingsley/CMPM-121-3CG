@@ -224,3 +224,27 @@ function ShipOfTheseus:onReveal(card)
   table.insert(card.owner.hand.cards, newCard)
   table.insert(Game.masterCardTable, newCard)
 end
+
+Midas = CardDataClass:new(
+  6,
+  8,
+  "Midas",
+  "When Revealed: Set ALL cards here to 3 power.",
+  nil
+)
+
+function Midas:new(owner)
+  return Midas:newCard(owner)
+end
+
+function Midas:onReveal(card)
+  local enemyCards = card:getEnemyCardsHere()
+  local myCards = card:getOwnCardsHere()
+  
+  for _, otherCard in ipairs(enemyCards) do
+    otherCard:setPower(3)
+  end
+  for _, otherCard in ipairs(myCards) do
+    otherCard:setPower(3)
+  end
+end
