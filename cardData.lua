@@ -178,3 +178,48 @@ function Dionysus:onReveal(card)
     end
   end
 end
+
+Hermes = CardDataClass:new(
+  6,
+  8,
+  "Hermes",
+  "When Revealed: Moves to another location.",
+  nil
+)
+
+function Hermes:new(owner)
+  return Hermes:newCard(owner)
+end
+
+function Hermes:onReveal(card)
+  card:moveLocations()
+end
+
+ShipOfTheseus = CardDataClass:new(
+  6,
+  8,
+  "ShipOfTheseus",
+  "When Revealed: Add a copy with +1 power to your hand.",
+  nil
+)
+
+function ShipOfTheseus:new(owner)
+  return ShipOfTheseus:newCard(owner)
+end
+
+function ShipOfTheseus:onReveal(card)
+  if #card.owner.hand.cards >= 7 then
+    return
+  end
+  
+  local newCard = nil
+  for _, cardRef in ipairs(cardRefrences) do
+    if cardRef.title == "ShipOfTheseus" then
+      newCard = cardRef:new(card.owner)
+    end
+  end
+  
+  table.insert(card.owner.hand.cards, newCard)
+  table.insert(Game.masterCardTable, newCard)
+  newCard:changePower(1)
+end

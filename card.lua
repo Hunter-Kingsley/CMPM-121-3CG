@@ -197,6 +197,22 @@ function CardClass:discard()
   table.insert(self.owner.discard.cards, self)
 end
 
+function CardClass:moveLocations()
+  local oldLocation = self.currentLocation
+  local newLocation = self.currentLocation
+  while oldLocation == newLocation do
+    newLocation = Game.locations[math.random(#Game.locations)]
+  end
+  
+  for index, card in ipairs(oldLocation.cards[self.owner]) do
+    if card == self then
+      table.remove(oldLocation.cards[self.owner], index)
+    end
+  end
+  
+  table.insert(newLocation.cards[self.owner], self)
+end
+
 function CardClass:onReveal()
   if self.dataClass.onReveal then
     self.dataClass:onReveal(self)
