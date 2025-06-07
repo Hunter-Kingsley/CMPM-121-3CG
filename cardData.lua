@@ -219,7 +219,8 @@ function ShipOfTheseus:onReveal(card)
     end
   end
   
+  newCard:setPower(card.power + 1)
+  print(newCard.power)
   table.insert(card.owner.hand.cards, newCard)
   table.insert(Game.masterCardTable, newCard)
-  newCard:changePower(1)
 end
