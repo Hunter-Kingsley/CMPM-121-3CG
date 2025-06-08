@@ -46,6 +46,9 @@ cardRefrences = {
   Helios
 }
 
+isWinner = false
+winner = false
+
 function love.load()
   math.randomseed(os.time())
   love.window.setMode(1280, 700)
@@ -74,6 +77,14 @@ function love.draw()
   Game:draw()
   
   StartButton:draw()
+  
+  if isWinner then
+    if winner then
+      love.graphics.print("You Lose!", 450, 300, 0, 4, 4)
+    else
+      love.graphics.print("You Win!", 450, 300, 0, 4, 4)
+    end
+  end
 end
 
 function isMouseOver(obj)
@@ -87,7 +98,7 @@ function isMouseOver(obj)
 end
 
 function love.mousereleased(mx, my, mStartButton)
-  if mStartButton == 1 and isMouseOver(StartButton) then
+  if mStartButton == 1 and isMouseOver(StartButton) and isWinner == false then
     StartButton:StartTurn()
   end
 end

@@ -38,6 +38,8 @@ function GameManager:load()
   for _, player in ipairs(self.players) do
     player:load()
   end
+  
+  self:iterateTurnUpkeep()
 end
 
 function GameManager:update()
@@ -86,7 +88,12 @@ end
 
 function GameManager:runTurn()
   local cardsToRemove = {}
-  for _, player in ipairs(self.players) do
+  local leaderboard = {self.players[1], self.players[2]}
+  
+  table.sort(leaderboard, function(a, b) return a.score > b.score end)
+  
+  
+  for _, player in ipairs(leaderboard) do
     print("player:")
     print(player)
     
@@ -100,7 +107,7 @@ function GameManager:runTurn()
   
   self:iterateTurnUpkeep()
   
-  for _, player in ipairs(self.players) do
+  for _, player in ipairs(leaderboard) do
     for _, card in ipairs(self.eventQueue[player]) do
       card:onEndOfTurn()
     end
@@ -117,11 +124,16 @@ function GameManager:runTurn()
       card:discard()
     end
     self.cardsToDiscard = {}
+    
+    if player.isBot then
+      player:botPlay()
+    end
   end
 end
 
 function GameManager:iterateTurnUpkeep()
   self.turn = self.turn + 1
+  
   
   for _, player in ipairs(self.players) do
     player.deck:drawCards(1)
@@ -130,6 +142,13 @@ function GameManager:iterateTurnUpkeep()
   
   for _, Location in ipairs(self.locations) do
     self:addScoreToWinners(Location)
+  end
+  
+  for _, player in ipairs(self.players) do
+    if player.score >= 25 then
+      isWinner = true
+      winner = player.isBot
+    end
   end
 end
 

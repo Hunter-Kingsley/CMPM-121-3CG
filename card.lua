@@ -42,6 +42,10 @@ function CardClass:update()
       self.position = mousePos - (self.size / 2)
     end
   end
+  
+  if self.owner.isBot and self.currentLocation == nil then
+    self.isFaceUp = false
+  end
 end
 
 function CardClass:draw()
@@ -204,6 +208,10 @@ function CardClass:discard()
 end
 
 function CardClass:moveLocations()
+  if #Game.locations[1].cards[self.owner] >= 4 and #Game.locations[2].cards[self.owner] >= 4 and #Game.locations[3].cards[self.owner] >= 4 then
+    return
+  end
+  
   local oldLocation = self.currentLocation
   local newLocation = self.currentLocation
   while oldLocation == newLocation do

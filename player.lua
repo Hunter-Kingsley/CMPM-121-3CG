@@ -67,3 +67,24 @@ function PlayerClass:draw()
       love.graphics.print(self.score, self.hand.position.x + self.hand.size.x - 10, self.hand.position.y - 10 + yOssfet, 0, 1.3, 1.3)
     end
 end
+
+function PlayerClass:botPlay()
+  table.sort(self.hand.cards, function(a, b) return a.cost > b.cost end)
+  
+  while #self.hand.cards > 0 and self.mana >= self.hand.cards[#self.hand.cards].cost do
+    if #Game.locations[1].cards[self] >= 4 and #Game.locations[2].cards[self] >= 4 and #Game.locations[3].cards[self] >= 4 then
+      break
+    end
+    
+    local validLocation = nil
+    while validLocation == nil or #validLocation.cards[self] >= 4 do
+      if #Game.locations[1].cards[self] >= 4 and #Game.locations[2].cards[self] >= 4 and #Game.locations[3].cards[self] >= 4 then
+        break
+      end
+      print("looping")
+      validLocation = Game.locations[math.random(#Game.locations)]
+    end
+    self.hand.cards[#self.hand.cards].isFaceUp = true
+    self.hand.cards[#self.hand.cards]:playCard(validLocation)
+  end
+end
