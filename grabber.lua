@@ -40,7 +40,9 @@ function GrabberClass:release()
   if self.lastSeenLocation ~= nil and self.heldObject ~= nil then
     local isOverLocation = isMouseOver(self.lastSeenLocation)
     if isOverLocation then
-      self.heldObject:playCard(self.lastSeenLocation)
+      if self.heldObject.owner.mana >= self.heldObject.cost and #self.lastSeenLocation.cards[self.heldObject.owner] < 4 then
+        self.heldObject:playCard(self.lastSeenLocation)
+      end
     end
     
     self.heldObject.state = CARD_STATE.IDLE

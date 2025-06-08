@@ -85,10 +85,10 @@ function GameManager:checkForMouseMoving()
 end
 
 function GameManager:runTurn()
+  local cardsToRemove = {}
   for _, player in ipairs(self.players) do
     print("player:")
     print(player)
-    local cardsToRemove = {}
     
     for _, card in ipairs(self.eventQueue[player]) do
       card:flip()
@@ -96,7 +96,11 @@ function GameManager:runTurn()
         table.insert(cardsToRemove, card)
       end
     end
-    
+  end
+  
+  self:iterateTurnUpkeep()
+  
+  for _, player in ipairs(self.players) do
     for _, card in ipairs(self.eventQueue[player]) do
       card:onEndOfTurn()
     end
@@ -114,6 +118,34 @@ function GameManager:runTurn()
     end
     self.cardsToDiscard = {}
   end
+end
+
+function GameManager:iterateTurnUpkeep()
+  self.turn = self.turn + 1
   
+  for _, player in ipairs(self.players) do
+    player.deck:drawCards(1)
+    player.mana = self.turn
+  end
   
+  for _, Location in ipairs(self.locations) do
+    self:addScoreToWinners(Location)
+  end
+end
+
+function GameManager:addScoreToWinners(Location)
+  local scores = {}
+  for _, player in ipairs(self.players) do
+    local tempTotal = 0
+    for _, card in ipairs(Location.cards[player]) do
+      tempTotal = tempTotal + card.power
+    end
+    table.insert(scores, tempTotal)
+  end
+  
+  if scores[1] > scores[2] then
+    self.players[1].score = self.players[1].score + math.abs(scores[1] - scores[2])
+  else
+    self.players[2].score = self.players[2].score + math.abs(scores[1] - scores[2])
+  end
 end

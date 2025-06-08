@@ -28,7 +28,7 @@ function DeckClass:update()
 end
 
 function DeckClass:drawCards(cardsToDraw)
-  if #self.cards < 1 then
+  if #self.cards < 1 or #self.owner.hand.cards >= 7 then
     return
   end
   

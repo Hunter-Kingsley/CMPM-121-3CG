@@ -132,6 +132,8 @@ function CardClass:playCard(playLocation)
   
   -- put refrence to self in eventQueue
   table.insert(Game.eventQueue[self.owner], self)
+  
+  self.owner.mana = self.owner.mana - self.cost
 end
 
 function CardClass:flip()
