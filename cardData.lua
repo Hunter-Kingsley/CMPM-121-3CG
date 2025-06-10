@@ -339,7 +339,7 @@ Helios = CardDataClass:new(
   6,
   12,
   "Helios",
-  "When Revealed: Discards your \nother cards here, add their \npower to this card",
+  "End of Turn: Discard this",
   love.graphics.newImage("Images/helios.png")
 )
 
