@@ -28,7 +28,7 @@ WoodenCow = CardDataClass:new(
   1,
   "Wooden Cow",
   "Who knows, maybe it'll \nscare somebody",
-  nil
+  love.graphics.newImage("Images/wooden_horse.png")
 )
 
 function WoodenCow:new(owner)
@@ -40,7 +40,7 @@ Pegasus = CardDataClass:new(
   5,
   "Pegasus",
   "They fly now!?",
-  nil
+  love.graphics.newImage("Images/Pegasus-Greek-PNG.png")
 )
 
 function Pegasus:new(owner)
@@ -52,7 +52,7 @@ Minotaur = CardDataClass:new(
   9,
   "Minotaur",
   "They're a mean lookin' fella",
-  nil
+  love.graphics.newImage("Images/minotaur.png")
 )
 
 function Minotaur:new(owner)
@@ -64,7 +64,7 @@ Titan = CardDataClass:new(
   14,
   "Titan",
   "Like from that one show",
-  nil
+  love.graphics.newImage("Images/titan.png")
 )
 
 function Titan:new(owner)
@@ -76,7 +76,7 @@ Ares = CardDataClass:new(
   6,
   "Ares",
   "When Revealed: Gain +2 power \nfor each enemy card here",
-  nil
+  love.graphics.newImage("Images/ares.png")
 )
 
 function Ares:new(owner)
@@ -98,7 +98,7 @@ Cyclops = CardDataClass:new(
   4,
   "Cyclops",
   "When Revealed: Discard your \nother cards here, gain +2 power \nfor each discarded",
-  nil
+  love.graphics.newImage("Images/cyclops.png")
 )
 
 function Cyclops:new(owner)
@@ -124,7 +124,7 @@ Artemis = CardDataClass:new(
   5,
   "Artemis",
   "When Revealed: Gain +5 power \nif there is exactly one \nenemy card here",
-  nil
+  love.graphics.newImage("Images/artemis.png")
 )
 
 function Artemis:new(owner)
@@ -144,7 +144,7 @@ Hades = CardDataClass:new(
   8,
   "Hades",
   "When Revealed: Gain +2 power \nfor each card in your discard pile",
-  nil
+  love.graphics.newImage("Images/hades.png")
 )
 
 function Hades:new(owner)
@@ -162,7 +162,7 @@ Dionysus = CardDataClass:new(
   8,
   "Dionysus",
   "When Revealed: Gain +2 power \nfor each of your other cards here",
-  nil
+  love.graphics.newImage("Images/dionysus.png")
 )
 
 function Dionysus:new(owner)
@@ -184,7 +184,7 @@ Hermes = CardDataClass:new(
   8,
   "Hermes",
   "When Revealed: Moves to \nanother location.",
-  nil
+  love.graphics.newImage("Images/hermes.png")
 )
 
 function Hermes:new(owner)
@@ -200,7 +200,7 @@ ShipOfTheseus = CardDataClass:new(
   8,
   "Ship Of Theseus",
   "When Revealed: Add a copy with \n+1 power to your hand",
-  nil
+  love.graphics.newImage("Images/ShipOfTheseus.png")
 )
 
 function ShipOfTheseus:new(owner)
@@ -230,7 +230,7 @@ Midas = CardDataClass:new(
   8,
   "Midas",
   "When Revealed: Set ALL cards \nhere to 3 power",
-  nil
+  love.graphics.newImage("Images/midas.png")
 )
 
 function Midas:new(owner)
@@ -254,7 +254,7 @@ Persephone = CardDataClass:new(
   5,
   "Persephone",
   "When Revealed: Discard the \nlowest power card in your hand",
-  nil
+  love.graphics.newImage("Images/persephone.png")
 )
 
 function Persephone:new(owner)
@@ -281,7 +281,7 @@ Pandora = CardDataClass:new(
   15,
   "Pandora",
   "When Revealed: If no ally cards \nare here, lower this card's \npower by 5",
-  nil
+  love.graphics.newImage("Images/pandora.png")
 )
 
 function Pandora:new(owner)
@@ -299,7 +299,7 @@ Icarus = CardDataClass:new(
   3,
   "Icarus",
   "End of Turn: Gains +1 power, but \nis discarded when its power \nis greater than 7",
-  nil
+  love.graphics.newImage("Images/icarus.png")
 )
 
 function Icarus:new(owner)
@@ -321,7 +321,7 @@ Nyx = CardDataClass:new(
   3,
   "Nyx",
   "When Revealed: Discards your \nother cards here, add their \npower to this card",
-  nil
+  love.graphics.newImage("Images/nyx.png")
 )
 
 function Nyx:new(owner)
@@ -344,7 +344,7 @@ Helios = CardDataClass:new(
   12,
   "Helios",
   "When Revealed: Discards your \nother cards here, add their \npower to this card",
-  nil
+  love.graphics.newImage("Images/helios.png")
 )
 
 function Helios:new(owner)

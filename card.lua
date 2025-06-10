@@ -69,9 +69,6 @@ function CardClass:draw()
     love.graphics.setColor(black)
     love.graphics.rectangle("line", self.position.x, self.position.y, self.size.x, self.size.y, 6, 6)
     
-    -- Name of Card
-    love.graphics.print(string.sub(self.dataClass.title, 1, 3), self.position.x + 20, self.position.y + (self.size.y / 2) - 13, 0, 1.5, 1.5)
-    
     -- Power Number
     love.graphics.setColor(1, 0.2, 0.2, 1)
     love.graphics.circle("fill", self.position.x + (self.size.x / 2), self.position.y + 12, 10)
@@ -87,6 +84,12 @@ function CardClass:draw()
     love.graphics.circle("fill", self.position.x + (self.size.x / 2), self.position.y + self.size.y - 12, 10)
     love.graphics.setColor(white)
     love.graphics.print(self.cost, self.position.x + (self.size.x / 2) - 3, self.position.y + self.size.y - 20)
+    
+    -- Card image
+    if self.dataClass.sprite ~= nil then
+      love.graphics.setColor(white)
+      love.graphics.draw(self.dataClass.sprite, self.position.x + 1, self.position.y + 23, 0, ((self.size.x - 2) / self.dataClass.sprite:getPixelWidth()), (54 / self.dataClass.sprite:getPixelHeight()))
+    end
   else
     --fill blue
     love.graphics.setColor(blue)
