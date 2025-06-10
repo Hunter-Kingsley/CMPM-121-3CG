@@ -140,9 +140,6 @@ function CardClass:playCard(playLocation)
   table.insert(playLocation.cards[self.owner], self)
   self.currentLocation = playLocation
   self.isFaceUp = false
-  print("played " .. tostring(self))
-  print("location cards len")
-  print(#self.currentLocation.cards)
   
   -- put refrence to self in eventQueue
   table.insert(Game.eventQueue[self.owner], self)
@@ -240,16 +237,11 @@ end
 function CardClass:onReveal()
   if self.dataClass.onReveal then
     self.dataClass:onReveal(self)
-    print(tostring(self) .. " did onReveal!")
-  else
-    print(tostring(self) .. " does not have an onReveal")
   end
 end
 
 function CardClass:onEndOfTurn()
   if self.dataClass.onEndOfTurn then
     self.dataClass:onEndOfTurn(self)
-  else
-    print(tostring(self) .. " does not have an onEndOfTurn")
   end
 end

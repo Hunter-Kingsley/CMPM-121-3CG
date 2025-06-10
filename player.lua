@@ -85,7 +85,6 @@ function PlayerClass:botPlay()
       if #Game.locations[1].cards[self] >= 4 and #Game.locations[2].cards[self] >= 4 and #Game.locations[3].cards[self] >= 4 then
         break
       end
-      print("looping")
       validLocation = Game.locations[math.random(#Game.locations)]
     end
     self.hand.cards[#self.hand.cards].isFaceUp = true

@@ -85,7 +85,6 @@ end
 
 function Ares:onReveal(card)
   local cardsHere = card:getEnemyCardsHere()
-  print(#cardsHere)
   for i, otherCard in ipairs(cardsHere) do
     if otherCard.owner ~= card.owner then
       card:changePower(2)
@@ -214,13 +213,12 @@ function ShipOfTheseus:onReveal(card)
   
   local newCard = nil
   for _, cardRef in ipairs(cardRefrences) do
-    if cardRef.title == "ShipOfTheseus" then
-      newCard = cardRef:new(card.owner)
+    if cardRef.title == "Ship Of Theseus" then
+      newCard = cardRef:newCard(card.owner)
     end
   end
   
   newCard:setPower(card.power + 1)
-  print(newCard.power)
   table.insert(card.owner.hand.cards, newCard)
   table.insert(Game.masterCardTable, newCard)
 end
@@ -308,8 +306,6 @@ end
 
 function Icarus:onEndOfTurn(card)
   card:changePower(1)
-  
-  print("my power: " .. tostring(card.power))
   
   if card.power > 7 then
     card:queueDiscard()

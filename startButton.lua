@@ -20,6 +20,5 @@ function StartButtonClass:draw()
 end
 
 function StartButtonClass:StartTurn()
-  print("STARTING THE TURN NOW")
   Game:runTurn()
 end

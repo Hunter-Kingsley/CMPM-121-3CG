@@ -94,8 +94,6 @@ function GameManager:runTurn()
   
   
   for _, player in ipairs(leaderboard) do
-    print("player:")
-    print(player)
     
     for _, card in ipairs(self.eventQueue[player]) do
       card:flip()
