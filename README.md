@@ -7,7 +7,7 @@
 - State Pattern used to track whether the card can or cannot be grabbed
 - Command Pattern used to not duplicate code for the AI players (they use the same actions as the real player)
 - Dirty Flag used to track whether the game has ended or not
-- TODO: Observer used to display the current hovered card's title and description
+- Observer used to display the current hovered card's title and description
 
 ## People who helped
 - Jason Rangel-Martinez
