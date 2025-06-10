@@ -6,8 +6,8 @@ function DiscardClass:new(owner)
   local metadata = {__index = DiscardClass}
   setmetatable(discard, metadata)
   
-  discard.position = Vector(owner.hand.position.x - 65, owner.hand.position.y + 10)
-  discard.size = Vector(50, 70)
+  discard.position = Vector(owner.hand.position.x + owner.hand.size.x + 15, owner.hand.position.y + 10)
+  discard.size = Vector(70, 100)
   discard.cards = {}
   discard.owner = owner
   

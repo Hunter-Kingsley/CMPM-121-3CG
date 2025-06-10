@@ -15,9 +15,9 @@ function PlayerClass:new(isBot)
   -- Logic for choosing where the hand should be placed (player hand is on bottom while AI hand is at the top of the screen)
   local handPos = Vector(0, 0)
   if (player.isBot) then
-    handPos = Vector(440, 3)
+    handPos = Vector(350, 3)
   else 
-    handPos = Vector(440, 607)
+    handPos = Vector(350, 577)
   end
   player.hand = HandClass:new(handPos.x, handPos.y)
   

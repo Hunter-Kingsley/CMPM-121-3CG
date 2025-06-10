@@ -14,9 +14,9 @@ function GameManager:new()
     PlayerClass:new(true)
   }
   game.locations = {
-    LocationClass:new(490, 150, lightGreen, game.players),
-    LocationClass:new(180, 150, lightRed, game.players),
-    LocationClass:new(800, 150, lightBlue, game.players)
+    LocationClass:new(460, 200, lightGreen, game.players),
+    LocationClass:new(90, 200, lightRed, game.players),
+    LocationClass:new(830, 200, lightBlue, game.players)
   }
   
   game.eventQueue = {}

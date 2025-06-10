@@ -62,7 +62,7 @@ function love.load()
   
   Game:load()
   
-  StartButton = StartButtonClass:new(940, 625)
+  StartButton = StartButtonClass:new(1040, 625)
   
 end
 

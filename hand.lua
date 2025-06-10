@@ -9,7 +9,7 @@ function HandClass:new(pX, pY)
   setmetatable(hand, metadata)
   
   hand.position = Vector(pX, pY)
-  hand.size = Vector(400, 90)
+  hand.size = Vector(580, 120)
   hand.cards = {}
   
   return hand
@@ -17,7 +17,7 @@ end
 
 function HandClass:update()
   for index, card in ipairs(self.cards) do
-    card.position.x = (self.position.x + 15) + ((index - 1) * 50)
+    card.position.x = (self.position.x + 15) + ((index - 1) * 80)
     card.position.y = self.position.y + 10
   end
 end

@@ -9,7 +9,7 @@ function LocationClass:new(xP, yP, color, playerTable)
   setmetatable(location, metadata)
   
   location.position = Vector(xP, yP)
-  location.size = Vector(300, 400)
+  location.size = Vector(360, 300)
   location.color = color
   location.cards = {}
   for _, player in ipairs(playerTable) do
@@ -23,11 +23,11 @@ function LocationClass:update()
   for _, player in ipairs(Game.players) do
     for index, card in ipairs(self.cards[player]) do
       if player.isBot then
-        card.position.x = (self.position.x) + (((index - 1) * 50) + 25)
+        card.position.x = (self.position.x) + (((index - 1) * 80) + 25)
         card.position.y = self.position.y + 10
       else
-        card.position.x = (self.position.x) + (((index - 1) * 50) + 25)
-        card.position.y = self.size.y + 60
+        card.position.x = (self.position.x) + (((index - 1) * 80) + 25)
+        card.position.y = self.size.y + 90
       end
     end
   end

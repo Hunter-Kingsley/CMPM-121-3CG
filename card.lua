@@ -20,7 +20,7 @@ function CardClass:new(cardData, owner)
   setmetatable(card, metadata)
   
   card.position = Vector(10, 10)
-  card.size = Vector(50, 70)
+  card.size = Vector(70, 100)
   card.dataClass = cardData
   card.cost = card.dataClass.cost
   card.power = card.dataClass.power
