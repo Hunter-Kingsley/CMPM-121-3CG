@@ -132,6 +132,7 @@ function CardClass:playCard(playLocation)
   -- put self in the locaiton
   table.insert(playLocation.cards[self.owner], self)
   self.currentLocation = playLocation
+  self.isFaceUp = false
   print("played " .. tostring(self))
   print("location cards len")
   print(#self.currentLocation.cards)
