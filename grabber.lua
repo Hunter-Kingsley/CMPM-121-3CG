@@ -62,7 +62,7 @@ function GrabberClass:release()
   self.grabPos = nil
 end
 
--- These functions are from Zac Emerzain's Day 21 Demo
+-- These functions are from Zac Emerzian's Day 21 Demo
 function GrabberClass:addObserver(newObserver)
   -- Redudancy Check
   local alreadyAdded = false
