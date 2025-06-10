@@ -27,7 +27,7 @@ WoodenCow = CardDataClass:new(
   1,
   1,
   "Wooden Cow",
-  "Who knows, maybe it'll scare somebody",
+  "Who knows, maybe it'll \nscare somebody",
   nil
 )
 
@@ -63,7 +63,7 @@ Titan = CardDataClass:new(
   7,
   14,
   "Titan",
-  "Like from than one show ",
+  "Like from that one show",
   nil
 )
 
@@ -75,7 +75,7 @@ Ares = CardDataClass:new(
   5,
   6,
   "Ares",
-  "When Revealed: Gain +2 power for each enemy card here.",
+  "When Revealed: Gain +2 power \nfor each enemy card here",
   nil
 )
 
@@ -97,7 +97,7 @@ Cyclops = CardDataClass:new(
   3,
   4,
   "Cyclops",
-  "When Revealed: Discard your other cards here, gain +2 power for each discarded.",
+  "When Revealed: Discard your \nother cards here, gain +2 power \nfor each discarded",
   nil
 )
 
@@ -123,7 +123,7 @@ Artemis = CardDataClass:new(
   4,
   5,
   "Artemis",
-  "When Revealed: Gain +5 power if there is exactly one enemy card here.",
+  "When Revealed: Gain +5 power \nif there is exactly one \nenemy card here",
   nil
 )
 
@@ -143,7 +143,7 @@ Hades = CardDataClass:new(
   6,
   8,
   "Hades",
-  "When Revealed: Gain +2 power for each card in your discard pile.",
+  "When Revealed: Gain +2 power \nfor each card in your discard pile",
   nil
 )
 
@@ -161,7 +161,7 @@ Dionysus = CardDataClass:new(
   6,
   8,
   "Dionysus",
-  "When Revealed: Gain +2 power for each of your other cards here.",
+  "When Revealed: Gain +2 power \nfor each of your other cards here",
   nil
 )
 
@@ -183,7 +183,7 @@ Hermes = CardDataClass:new(
   6,
   8,
   "Hermes",
-  "When Revealed: Moves to another location.",
+  "When Revealed: Moves to \nanother location.",
   nil
 )
 
@@ -198,8 +198,8 @@ end
 ShipOfTheseus = CardDataClass:new(
   6,
   8,
-  "ShipOfTheseus",
-  "When Revealed: Add a copy with +1 power to your hand.",
+  "Ship Of Theseus",
+  "When Revealed: Add a copy with \n+1 power to your hand",
   nil
 )
 
@@ -229,7 +229,7 @@ Midas = CardDataClass:new(
   6,
   8,
   "Midas",
-  "When Revealed: Set ALL cards here to 3 power.",
+  "When Revealed: Set ALL cards \nhere to 3 power",
   nil
 )
 
@@ -253,7 +253,7 @@ Persephone = CardDataClass:new(
   3,
   5,
   "Persephone",
-  "When Revealed: Discard the lowest power card in your hand.",
+  "When Revealed: Discard the \nlowest power card in your hand",
   nil
 )
 
@@ -280,7 +280,7 @@ Pandora = CardDataClass:new(
   8,
   15,
   "Pandora",
-  "When Revealed: If no ally cards are here, lower this card's power by 5.",
+  "When Revealed: If no ally cards \nare here, lower this card's \npower by 5",
   nil
 )
 
@@ -298,7 +298,7 @@ Icarus = CardDataClass:new(
   2,
   3,
   "Icarus",
-  "End of Turn: Gains +1 power, but is discarded when its power is greater than 7.",
+  "End of Turn: Gains +1 power, but \nis discarded when its power \nis greater than 7",
   nil
 )
 
@@ -320,7 +320,7 @@ Nyx = CardDataClass:new(
   5,
   3,
   "Nyx",
-  "When Revealed: Discards your other cards here, add their power to this card.",
+  "When Revealed: Discards your \nother cards here, add their \npower to this card",
   nil
 )
 
@@ -343,7 +343,7 @@ Helios = CardDataClass:new(
   6,
   12,
   "Helios",
-  "When Revealed: Discards your other cards here, add their power to this card.",
+  "When Revealed: Discards your \nother cards here, add their \npower to this card",
   nil
 )
 

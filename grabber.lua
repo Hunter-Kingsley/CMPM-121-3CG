@@ -14,6 +14,9 @@ function GrabberClass:new()
   grabber.currentMousePos = nil
   grabber.lastSeenLocation = nil
   
+  grabber.observers = {}
+  grabber:addObserver(descriptionDisplay)
+  
   return grabber
 end
 
@@ -29,7 +32,15 @@ function GrabberClass:update()
 
   if not love.mouse.isDown(1) and self.grabPos ~= nil then
     self:release()
-  end  
+  end
+  
+  if self.lastSeenCard ~= nil then
+    if isMouseOver(self.lastSeenCard) then
+      self:notifyObservers(self.lastSeenCard)
+    else
+      self:notifyObservers(nil)
+    end
+  end
 end
 
 function GrabberClass:grab()
@@ -49,4 +60,33 @@ function GrabberClass:release()
     self.heldObject = nil
   end
   self.grabPos = nil
+end
+
+-- These functions are from Zac Emerzain's Day 21 Demo
+function GrabberClass:addObserver(newObserver)
+  -- Redudancy Check
+  local alreadyAdded = false
+  for _, observer in ipairs(self.observers) do
+    if observer == newObserver then
+      alreadyAdded = true
+      break
+    end
+  end
+  if alreadyAdded then
+    return
+  end
+  
+  table.insert(self.observers, newObserver)
+end
+
+function GrabberClass:notifyObservers(card)
+  for i, observer in ipairs(self.observers) do
+    if observer.onNotify ~= nil then
+      if card == nil then
+        observer:onNotify(nil)
+      else
+        observer:onNotify(card.dataClass or nil)
+      end
+    end
+  end
 end

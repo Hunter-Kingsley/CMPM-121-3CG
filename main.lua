@@ -15,6 +15,7 @@ black = {0, 0, 0, 1}
 white = {1, 1, 1, 1}
 
 require "vector"
+require "descriptionDisplay"
 require "hand"
 require "location"
 require "cardData"
@@ -25,6 +26,8 @@ require "player"
 require "grabber"
 require "gameManager"
 require "startButton"
+
+descriptionDisplay = DescriptionDisplay:new()
 
 cardRefrences = {
   WoodenCow,
@@ -75,6 +78,7 @@ end
 function love.draw()
   
   Game:draw()
+  DescriptionDisplay:draw()
   
   StartButton:draw()
   
@@ -85,6 +89,8 @@ function love.draw()
       love.graphics.print("You Win!", 450, 300, 0, 4, 4)
     end
   end
+  
+--  love.graphics.rectangle("fill", 5, 510, 325, 180)
 end
 
 function isMouseOver(obj)

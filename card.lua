@@ -51,7 +51,7 @@ end
 function CardClass:draw()
   -- drop shadow
   if self.state ~= CARD_STATE.IDLE then
-      love.graphics.setColor(0, 0, 0, 0.8) -- color values [0, 1]
+      love.graphics.setColor(0, 0, 0, 0.8)
       local offset = 4 * (self.state == CARD_STATE.GRABBED and 2 or 1)
       love.graphics.rectangle("fill", self.position.x + offset, self.position.y + offset, self.size.x, self.size.y, 6, 6)
     end
@@ -94,8 +94,10 @@ function CardClass:draw()
 end
 
 function CardClass:checkForMouseOver()
+  local MouseOver = isMouseOver(self)
+  if MouseOver and self.isFaceUp then grabber.lastSeenCard = self end
+  
   if self.isFaceUp and self.currentLocation == nil then
-    local MouseOver = isMouseOver(self)
     if MouseOver and grabber.heldObject ~= nil and grabber.heldObject ~= self then
       return
     end
