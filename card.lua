@@ -57,8 +57,12 @@ function CardClass:draw()
     end
   
   if self.isFaceUp then
-    -- fill white
-    love.graphics.setColor(white)
+    -- fill color of player
+    if self.owner.isBot then
+      love.graphics.setColor(orange)
+    else
+      love.graphics.setColor(teal)
+    end
     love.graphics.rectangle("fill", self.position.x, self.position.y, self.size.x, self.size.y, 6, 6)
     
     -- black outline

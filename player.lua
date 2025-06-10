@@ -58,14 +58,18 @@ function PlayerClass:draw()
     end
     
   -- score number
-  love.graphics.setColor(0, 0.7, 0, 1)
-    love.graphics.circle("fill", self.hand.position.x + self.hand.size.x, self.hand.position.y + yOssfet, 15)
-    love.graphics.setColor(white)
-    if self.score < 10 then
-      love.graphics.print(self.score, self.hand.position.x + self.hand.size.x - 5, self.hand.position.y - 10 + yOssfet, 0, 1.3, 1.3)
-    else
-      love.graphics.print(self.score, self.hand.position.x + self.hand.size.x - 10, self.hand.position.y - 10 + yOssfet, 0, 1.3, 1.3)
-    end
+  if self.isBot then
+    love.graphics.setColor(orange)
+  else
+    love.graphics.setColor(teal)
+  end
+  love.graphics.circle("fill", self.hand.position.x + self.hand.size.x, self.hand.position.y + yOssfet, 15)
+  love.graphics.setColor(white)
+  if self.score < 10 then
+    love.graphics.print(self.score, self.hand.position.x + self.hand.size.x - 5, self.hand.position.y - 10 + yOssfet, 0, 1.3, 1.3)
+  else
+    love.graphics.print(self.score, self.hand.position.x + self.hand.size.x - 10, self.hand.position.y - 10 + yOssfet, 0, 1.3, 1.3)
+  end
 end
 
 function PlayerClass:botPlay()

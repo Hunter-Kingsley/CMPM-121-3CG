@@ -13,6 +13,8 @@ green = {0, 1, 0, 1}
 lightGreen = {0.5, 1, 0.5, 1}
 black = {0, 0, 0, 1}
 white = {1, 1, 1, 1}
+teal = {0.4, 0.9, 1, 1}
+orange = {1, 0.6, 0, 1}
 
 require "vector"
 require "descriptionDisplay"
@@ -84,9 +86,9 @@ function love.draw()
   
   if isWinner then
     if winner then
-      love.graphics.print("You Lose!", 450, 300, 0, 4, 4)
+      love.graphics.print("You Lose!", 500, 300, 0, 4, 4)
     else
-      love.graphics.print("You Win!", 450, 300, 0, 4, 4)
+      love.graphics.print("You Win!", 500, 300, 0, 4, 4)
     end
   end
   
